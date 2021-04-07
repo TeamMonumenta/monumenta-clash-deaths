@@ -1,0 +1,7 @@
+name: MonumentaClashDeaths
+main: com.playmonumenta.clashdeaths.ClashDeaths
+version: 0.0.1
+api-version: 1.16
+author: Combustible
+depend: []
+softdepend: []
