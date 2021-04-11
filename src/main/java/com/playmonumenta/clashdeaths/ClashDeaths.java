@@ -11,7 +11,7 @@ public class ClashDeaths extends JavaPlugin {
 	private FileConfiguration mConfig;
 	private File mConfigFile = new File(getDataFolder(), "config.yml");;
 	public DeathManager mDeathManager = null;
-	private boolean mDebugMessages;
+	private int mDebugLevel;
 
 	@Override
 	public void onLoad() {
@@ -40,14 +40,14 @@ public class ClashDeaths extends JavaPlugin {
 	private void reloadConfigYaml(CommandSender sender) {
 		mConfig = YamlConfiguration.loadConfiguration(mConfigFile);
 
-		if (mConfig.isBoolean("debug_messages")) {
-			mDebugMessages = mConfig.getBoolean("debug_messages", false);
+		if (mConfig.isInt("debug_messages")) {
+			mDebugLevel = mConfig.getInt("debug_messages", 0);
 		} else {
-			mDebugMessages = false;
+			mDebugLevel = 0;
 		}
 	}
 
-	public boolean debugMessagesEnabled() {
-		return mDebugMessages;
+	public int debugMessagLevel() {
+		return mDebugLevel;
 	}
 }

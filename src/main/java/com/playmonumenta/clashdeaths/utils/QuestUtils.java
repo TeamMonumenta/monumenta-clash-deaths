@@ -11,6 +11,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -49,7 +52,7 @@ public class QuestUtils {
 			if (senders != null) {
 				for (CommandSender sender : senders) {
 					if (sender != null) {
-						sender.sendMessage(ChatColor.RED + "Caught exception trying to reload " + folderName + ": " + e);
+						sender.sendMessage(Component.text("Caught exception trying to reload " + folderName + ": " + e, NamedTextColor.RED));
 					}
 				}
 			}
@@ -82,7 +85,7 @@ public class QuestUtils {
 				if (senders != null) {
 					for (CommandSender sender : senders) {
 						if (sender != null) {
-							sender.sendMessage(ChatColor.RED + "Failed to load quest file '" + file.getPath() + "'");
+							sender.sendMessage(Component.text("Failed to load quest file '" + file.getPath() + "'", NamedTextColor.RED));
 							MessagingUtils.sendStackTrace(sender, e);
 						}
 					}
@@ -93,8 +96,7 @@ public class QuestUtils {
 		if (senders != null) {
 			for (CommandSender sender : senders) {
 				if (sender != null) {
-					sender.sendMessage(folderLocation);
-					sender.sendMessage(ChatColor.GOLD + "Loaded " + Integer.toString(numFiles) + " " + folderName + " files");
+					sender.sendMessage(Component.text("Loaded " + Integer.toString(numFiles) + " " + folderName + " files", NamedTextColor.GOLD));
 				}
 			}
 
@@ -111,7 +113,7 @@ public class QuestUtils {
 					if (outMsg.length() > 1000) {
 						for (CommandSender sender : senders) {
 							if (sender != null) {
-								sender.sendMessage(ChatColor.GOLD + outMsg);
+								sender.sendMessage(Component.text(outMsg, NamedTextColor.GOLD));
 							}
 						}
 						outMsg = "";
@@ -121,7 +123,7 @@ public class QuestUtils {
 				if (!outMsg.isEmpty()) {
 					for (CommandSender sender : senders) {
 						if (sender != null) {
-							sender.sendMessage(ChatColor.GOLD + outMsg);
+							sender.sendMessage(Component.text(outMsg, NamedTextColor.GOLD));
 						}
 					}
 				}
